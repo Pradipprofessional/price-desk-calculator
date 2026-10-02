@@ -94,7 +94,7 @@ function formatPrice(value: number) {
 function App() {
   const [mode, setMode] = useState<CalculationMode>('reverse')
   const [basePrice, setBasePrice] = useState('')
-  const [discount, setDiscount] = useState('')
+  const [discount, setDiscount] = useState('0')
   const [language, setLanguage] = useState<Language>(() => (
     localStorage.getItem('priceDeskLanguage') === 'en' ? 'en' : 'hi'
   ))
@@ -106,7 +106,8 @@ function App() {
   }, [language, text.documentTitle])
 
   const decodedPrice = mode === 'reverse' ? decodeSellingPrice(basePrice) : basePrice
-  const price = Number(decodedPrice)
+  const enteredPrice = Number(decodedPrice)
+  const price = mode === 'reverse' ? enteredPrice * 2 : enteredPrice
   const discountRate = Number(discount)
   const hasPrice = basePrice !== '' && Number.isFinite(price) && price >= 0
   const hasEncodedPrice = mode === 'reverse' && /[A-IZ]/i.test(basePrice)
@@ -204,7 +205,7 @@ function App() {
               {mode === 'reverse' && (
                 <span className="selling-price-hint">
                   {hasEncodedPrice
-                    ? text.codeValue(formatPrice(Number(decodedPrice)))
+                    ? text.codeValue(formatPrice(enteredPrice * 2))
                     : text.codeHint}
                 </span>
               )}
