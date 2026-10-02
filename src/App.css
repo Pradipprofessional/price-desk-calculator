@@ -41,10 +41,19 @@
 }
 
 .wordmark-mark span { color: #f29b48; }
+.topbar-actions { display: flex; align-items: center; gap: 18px; }
+.language-switch { display: inline-flex; align-items: center; gap: 2px; padding: 3px; border: 1px solid var(--line); background: #fffefa; }
+.language-switch button { min-height: 27px; padding: 4px 8px; border: 0; background: transparent; color: #696e63; cursor: pointer; font-size: 10px; font-weight: 700; }
+.language-switch button[aria-pressed="true"] { background: var(--green); color: #fffefa; }
+.language-switch button:focus-visible { outline: 2px solid var(--orange); outline-offset: 2px; }
+.lang-hi { font-family: 'Noto Sans Devanagari', 'Kohinoor Devanagari', 'Nirmala UI', sans-serif; }
+.lang-hi h1 em { font-family: inherit; font-weight: 700; }
+.lang-hi .mode-button { line-height: 1.45; }
 .topbar-note, .eyebrow, .tool-index, .field-label, .result-label, .result-helper, .calculation-note, .code-result-label, .code-result-count, .alphabet-cell small, .code-footnote, .footer {
   font-family: var(--mono);
   letter-spacing: 0;
 }
+.lang-hi .topbar-note, .lang-hi .eyebrow, .lang-hi .tool-index, .lang-hi .field-label, .lang-hi .result-label, .lang-hi .result-helper, .lang-hi .calculation-note, .lang-hi .footer { font-family: inherit; }
 
 .topbar-note { color: var(--muted); font-size: 10px; font-weight: 500; }
 .status-dot { display: inline-block; width: 7px; height: 7px; margin-right: 7px; border-radius: 50%; background: #3c8056; vertical-align: 1px; }
@@ -178,6 +187,9 @@ h2 { margin-bottom: 0; font-size: 19px; line-height: 1.2; font-weight: 700; }
   .app-shell { width: calc(100% - 28px); }
   .topbar { height: 62px; }
   .topbar-note { font-size: 8px; }
+  .topbar-actions { gap: 0; }
+  .topbar-actions .topbar-note { display: none; }
+  .language-switch button { min-height: 28px; padding: 4px 7px; font-size: 9px; }
   .intro { min-height: 195px; align-items: flex-start; padding-top: 34px; }
   h1 { font-size: 57px; }
   .intro-note { position: absolute; right: 0; bottom: 19px; margin: 0; font-size: 10px; line-height: 1.6; }
@@ -186,6 +198,7 @@ h2 { margin-bottom: 0; font-size: 19px; line-height: 1.2; font-weight: 700; }
   .tool-heading { margin-bottom: 19px; }
   h2 { font-size: 17px; }
   .mode-button { padding: 7px 5px; font-size: 8px; }
+  .lang-hi .mode-button { min-height: 48px; padding: 6px 4px; font-size: 9px; }
   .mode-step { width: 16px; height: 16px; margin-right: 2px; font-size: 8px; }
   .mode-arrow { padding: 0 1px; font-size: 11px; }
   .input-row { grid-template-columns: 1fr 132px; gap: 9px; }
