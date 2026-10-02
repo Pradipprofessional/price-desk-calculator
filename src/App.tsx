@@ -20,7 +20,7 @@ function formatPrice(value: number) {
 }
 
 function App() {
-  const [mode, setMode] = useState<CalculationMode>('discounted')
+  const [mode, setMode] = useState<CalculationMode>('reverse')
   const [basePrice, setBasePrice] = useState('')
   const [discount, setDiscount] = useState('')
 
@@ -117,10 +117,11 @@ function App() {
                 </span>
               )}
             </label>
-            <label className="field discount-field">
-              <span className="field-label">Discount</span>
+            <div className="field discount-field">
+              <label className="field-label" htmlFor="discount-input">Discount</label>
               <span className="input-wrap">
                 <input
+                  id="discount-input"
                   aria-label="Discount percentage"
                   type="number"
                   min="0"
@@ -133,7 +134,20 @@ function App() {
                 />
                 <span className="suffix-mark">%</span>
               </span>
-            </label>
+              <div className="discount-presets" aria-label="Popular discount presets">
+                {[15, 30, 50, 70].map((percentage) => (
+                  <button
+                    aria-pressed={Number(discount) === percentage}
+                    className={Number(discount) === percentage ? 'discount-chip selected' : 'discount-chip'}
+                    key={percentage}
+                    onClick={() => setDiscount(String(percentage))}
+                    type="button"
+                  >
+                    {percentage}%
+                  </button>
+                ))}
+              </div>
+            </div>
           </div>
 
           <div className="result-panel" aria-live="polite">
